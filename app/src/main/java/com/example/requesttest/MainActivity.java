@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // activity 创建之后执行的代码
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findViewById(R.id.btn_test).setOnClickListener(this);
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        // 按钮按下后执行的操作
         finalDemo();
     }
 
@@ -106,14 +108,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-
+    //    okhttp GET请求
     void okhttpParams(){
         HttpUrl.Builder builder = HttpUrl.parse("https://reqres.in/api/users").newBuilder();
         builder.addQueryParameter("page", "2");
         String url = builder.build().toString();
         Log.d(TAG, "okhttpParams: " + url);
     }
-
+    //    okhttp POST请求
     void okhttpPostDemo(){
         tvContent.setText("请求中...");
         RequestBody body = new FormBody.Builder()
@@ -142,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    //    retrofit RESTful 的 HTTP 网络请求框架的封装 GET请求。
     void retrofitGetDemo(){
         tvContent.setText("请求中...");
         Retrofit retrofit = new Retrofit.Builder()
@@ -163,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    //    retrofit RESTful 的 HTTP 网络请求框架的封装 POST请求。
     void retrofitPostDemo()    {
         tvContent.setText("请求中...");
         Retrofit retrofit = new Retrofit.Builder()
@@ -184,6 +188,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    // rxJava响应式操作GET请求demo
     void rxJavaGetDemo()    {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://reqres.in")
@@ -215,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
     }
-
+    // rxJava响应式操作POST的demo
     void rxJavaPostDemo()    {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -260,6 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 7. 获取单个用户信息 get: https://reqres.in/api/users/2
      * 8. 显示用户的头像 avatar
      */
+    // 响应式操作的链式结构
     void finalDemo() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://reqres.in")
